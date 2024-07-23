@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 import json
 
+# Id's:
 # CUSR0000SA0: All itens Ajusted
 # CUSR0000SA0L1E: All itens Ajusted, less food and energy
 # CUSR0000SETB01: gasoline
@@ -20,19 +21,16 @@ json_data = json.loads(p.text)
 
 data_entries = []
 
-# Processando cada série de dados
 for series in json_data['Results']['series']:
     seriesId = series['seriesID']
     for item in series['data']:
-        if 'M01' <= item['period'] <= 'M12':  # Filtrando apenas os períodos desejados
+        if 'M01' <= item['period'] <= 'M12':  
             year = item['year']
             period = item['period']
             value = item['value']
 
-            # Adicionando a entrada de dados à lista
             data_entries.append({"series id": seriesId, "year": year, "period": period, "value": value})
 
-# Convertendo a lista para um DataFrame
 df = pd.DataFrame(data_entries, columns=["series id", "year", "period", "value"])
 
 df['Date'] = (df['year'].astype("str") + '-' + df['period'].apply(lambda x: x[1:]) + '-01').astype('datetime64[ns]')
@@ -43,5 +41,6 @@ df.columns = ['All Items', 'All Items Less Food and Energy', 'Gasoline']
 
 df.to_csv('CPIdata.csv')
 
+print(df.head())    
 
 
