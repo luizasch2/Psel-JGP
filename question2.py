@@ -13,7 +13,6 @@ df['Gasoline'] = df['Gasoline'].pct_change() * 100
 
 fig = go.Figure()
 
-
 fig.add_trace(go.Scatter(x=df['Date'], y=df['All Items'],
                          mode='lines+markers', name='All Items'))
 fig.add_trace(go.Scatter(x=df['Date'], y=df['All Items Less Food and Energy'],
