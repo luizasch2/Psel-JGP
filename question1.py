@@ -43,8 +43,8 @@ try:
     df.to_csv('CPIdata.csv')
 
 except requests.exceptions.HTTPError as err:
-    print(f"Erro HTTP ocorrido: {err}")
+    print(f"HTTP error occurred: {err}")
 except requests.exceptions.RequestException as err:
-    print(f"Erro de requisição ocorrido: {err}")
+    print(f"Request error occurred: {err}")
 except Exception as err:
-    print(f"Um erro ocorreu: {err}")
+    print(f"An error has occurred: {err}")
