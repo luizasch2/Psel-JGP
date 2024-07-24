@@ -4,3 +4,4 @@ json5==0.9.17
 plotly==5.3.1
 fastapi==0.111.1
 csv == 1.0.0
+uvicorn==0.30.3
